@@ -1,6 +1,6 @@
 // Collection creation and schema validation setup
 const { connectToDatabase, closeConnection } = require('./db');
-const schemas = require('../schemas/general_assistant_schema');
+const schemas = require('./general_assistant_schema');
 
 // Function to create collections with validation
 async function createCollections() {
@@ -93,6 +93,18 @@ async function createIndexes() {
     if (db) await closeConnection();
   }
 }
+
+(async () => {
+  try {
+    await createCollections();
+    await createIndexes();
+    console.log('Database setup completed successfully.');
+  } catch (err) {
+    console.error('Setup failed:', err);
+  }
+})();
+
+
 
 // Export functions
 module.exports = {

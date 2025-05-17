@@ -6,11 +6,8 @@ require('dotenv').config();
 const url = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 const dbName = process.env.DB_NAME || 'financial_ai_agent_db';
 
-// Create a new MongoClient
-const client = new MongoClient(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+// Create a new MongoClient (no deprecated options needed)
+const client = new MongoClient(url);
 
 // Connect to MongoDB
 async function connectToDatabase() {
